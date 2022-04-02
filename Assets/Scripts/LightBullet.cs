@@ -19,10 +19,17 @@ public class LightBullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         Destroy(gameObject);
-
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy")) {
             TrackerEnemy enemy = collision.collider.gameObject.GetComponent<TrackerEnemy>();
             enemy.Die();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Lantern")) {
+            Destroy(gameObject);
+            Lantern lantern = collision.gameObject.GetComponent<Lantern>();
+            lantern.Light();
         }
     }
 }
