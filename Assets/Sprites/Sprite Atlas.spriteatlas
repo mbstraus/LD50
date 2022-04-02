@@ -45,7 +45,8 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: 8b70d75035295ab48916c24c32fa09d9, type: 3}
-    - {fileID: 2800000, guid: db0973a40e030df4c8dc7451a1451c75, type: 3}
+    - {fileID: 2800000, guid: a40c423fa6517f042bc9de9080af2f93, type: 3}
+    - {fileID: 2800000, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -55,31 +56,33 @@ SpriteAtlas:
   - {fileID: -1194582828, guid: 8b70d75035295ab48916c24c32fa09d9, type: 3}
   - {fileID: 254657957, guid: 8b70d75035295ab48916c24c32fa09d9, type: 3}
   - {fileID: -1957609909, guid: 8b70d75035295ab48916c24c32fa09d9, type: 3}
-  - {fileID: 189745129, guid: db0973a40e030df4c8dc7451a1451c75, type: 3}
-  - {fileID: 1944619725, guid: db0973a40e030df4c8dc7451a1451c75, type: 3}
-  - {fileID: -963073146, guid: db0973a40e030df4c8dc7451a1451c75, type: 3}
-  - {fileID: 1926343916, guid: db0973a40e030df4c8dc7451a1451c75, type: 3}
-  - {fileID: -1178996006, guid: db0973a40e030df4c8dc7451a1451c75, type: 3}
-  - {fileID: 1144965821, guid: db0973a40e030df4c8dc7451a1451c75, type: 3}
-  - {fileID: 889336641, guid: db0973a40e030df4c8dc7451a1451c75, type: 3}
-  - {fileID: -2112208872, guid: db0973a40e030df4c8dc7451a1451c75, type: 3}
-  - {fileID: 1160897606, guid: db0973a40e030df4c8dc7451a1451c75, type: 3}
-  - {fileID: -1943692519, guid: db0973a40e030df4c8dc7451a1451c75, type: 3}
+  - {fileID: -1430727985, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+  - {fileID: -902315309, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+  - {fileID: 849213096, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+  - {fileID: 35342542, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+  - {fileID: 1996974994, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+  - {fileID: 1944916172, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+  - {fileID: 1448364861, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+  - {fileID: 891900672, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+  - {fileID: 767536927, guid: a40c423fa6517f042bc9de9080af2f93, type: 3}
+  - {fileID: 1183083944, guid: a40c423fa6517f042bc9de9080af2f93, type: 3}
+  - {fileID: 1399752360, guid: a40c423fa6517f042bc9de9080af2f93, type: 3}
   m_PackedSpriteNamesToIndex:
   - player_jump
   - player_idle
   - player_attack
   - player_walk
-  - dirt_9
-  - dirt_8
-  - dirt_5
-  - dirt_4
-  - dirt_7
-  - dirt_6
-  - dirt_1
-  - dirt_0
-  - dirt_3
-  - dirt_2
+  - cave_corner_top_right
+  - cave_corner_top_left
+  - cave_wall
+  - cave_background
+  - cave_vines_2
+  - cave_vines_1
+  - cave_vines_0
+  - cave_top
+  - slime_0
+  - slime_1
+  - slime_2
   m_RenderDataMap: {}
   m_Tag: Sprite Atlas
   m_IsVariant: 0
