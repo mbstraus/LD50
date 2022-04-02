@@ -3,10 +3,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Animator Animator;
     private Vector2 MovementVector = Vector2.zero;
     private bool IsJumpHeld = false;
-    private bool IsJumping = false;
+    private float JumpCheckDelay = 0f;
 
+    [SerializeField]
+    public bool IsJumping = false;
     [SerializeField]
     public Rigidbody2D rb;
     [SerializeField]
@@ -15,32 +18,47 @@ public class PlayerMovement : MonoBehaviour
     public float JumpForce = 10;
     [SerializeField]
     public float GroundDistanceCheck = 0.7f;
+    [SerializeField]
+    public float JumpCheckDelayTime = 0.1f;
 
     // Start is called before the first frame update
     void Start() {
+        Animator = GetComponent<Animator>();
+    }
+
+    private void Update() {
+        if (JumpCheckDelay > 0f) {
+            JumpCheckDelay -= Time.deltaTime;
+        } else {
+            if (IsJumping && IsGrounded()) {
+                Animator.SetBool("Is Jumping", false);
+                IsJumping = false;
+            }
+        }
     }
 
     private void FixedUpdate() {
-        //rb.MovePosition(rb.position + (MovementVector * MovementSpeed * Time.fixedDeltaTime));
         rb.velocity = new Vector2(MovementVector.x * MovementSpeed, rb.velocity.y);
         if (IsJumpHeld && !IsJumping && IsGrounded()) {
+            JumpCheckDelay = JumpCheckDelayTime;
             IsJumping = true;
             rb.velocity = new Vector2(0, JumpForce);
-        }
-        if (IsJumping && IsGrounded()) {
-            IsJumping = false;
         }
     }
 
     public void Move(InputAction.CallbackContext callbackContext) {
         MovementVector = callbackContext.ReadValue<Vector2>();
-        //animator.SetBool("Is Moving", IsCharacterMoving);
-        //animator.SetFloat("Horizontal", MovementVector.x);
-        //animator.SetFloat("Vertical", MovementVector.y);
+        if (MovementVector == Vector2.zero) {
+            Animator.SetBool("Is Moving", false);
+        } else {
+            Animator.SetBool("Is Moving", true);
+            Animator.SetFloat("Horizontal", MovementVector.x);
+        }
     }
 
     public void Jump(InputAction.CallbackContext callbackContext) {
         if (callbackContext.started && !IsJumpHeld && IsGrounded()) {
+            Animator.SetBool("Is Jumping", true);
             IsJumpHeld = true;
         }
         if (callbackContext.canceled) {
