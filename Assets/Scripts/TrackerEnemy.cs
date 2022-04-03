@@ -7,6 +7,7 @@ public class TrackerEnemy : MonoBehaviour
     private PlayerLight Player;
     private Rigidbody2D rb;
     private float HitCooldownRemaining = 0f;
+    private AudioSource audioSource;
 
     [SerializeField]
     public float DistanceToPlayerToBeginTracking = 20f;
@@ -20,10 +21,13 @@ public class TrackerEnemy : MonoBehaviour
     public float PushBackForce = 2f;
     [SerializeField]
     public PowerChargePickup PowerChargePickupPrefab;
+    [SerializeField]
+    public AudioClip SlimeDied;
 
     void Start() {
         Player = FindObjectOfType<PlayerLight>();
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update() {
@@ -58,7 +62,7 @@ public class TrackerEnemy : MonoBehaviour
     public void Die() {
         PowerChargePickup instance = Instantiate(PowerChargePickupPrefab, transform.position, Quaternion.identity);
         instance.ChargeAmount = LightStrength;
-
+        audioSource.PlayOneShot(SlimeDied);
         Destroy(gameObject);
     }
 }

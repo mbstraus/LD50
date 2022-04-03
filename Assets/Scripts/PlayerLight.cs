@@ -9,6 +9,7 @@ public class PlayerLight : MonoBehaviour
     private float LightDegradeTimeRemaining = 0f;
     private SpriteRenderer SpriteRenderer;
     private Color startingColor;
+    private PlayerSounds soundPlayer;
 
     [SerializeField]
     public float RadiusIncreaseByPip = 1f;
@@ -28,6 +29,7 @@ public class PlayerLight : MonoBehaviour
         LightDegradeTimeRemaining = LightDegradeTime;
         lightPipChangeHandlers(GameManager.Instance.MaxLightPips, GameManager.Instance.CurrentLightPips);
         SpriteRenderer = GetComponent<SpriteRenderer>();
+        soundPlayer = GetComponent<PlayerSounds>();
         startingColor = SpriteRenderer.color;
         if (GameManager.Instance.IsPowerStationInAnotherScene) {
             StartPositionMarker startPosition = FindObjectOfType<StartPositionMarker>();
@@ -54,12 +56,19 @@ public class PlayerLight : MonoBehaviour
     }
 
     public void ChangeCurrentLightPips(int changeAmount, bool IsDamage) {
+
         if (IsDamage && InvulnerabilityTimeRemaining <= 0f) {
             GameManager.Instance.CurrentLightPips = Mathf.Clamp(GameManager.Instance.CurrentLightPips + changeAmount, 0, GameManager.Instance.MaxLightPips);
             InvulnerabilityTimeRemaining = InvulnerabiiltyTime;
             startingColor = SpriteRenderer.color;
             SpriteRenderer.color = InvulnerabilityColor;
+            soundPlayer.PlayLoseEnergy();
         } else {
+            if (changeAmount > 0) {
+                soundPlayer.PlayEnergyPickup();
+            } else {
+                soundPlayer.PlayLoseEnergy();
+            }
             GameManager.Instance.CurrentLightPips = Mathf.Clamp(GameManager.Instance.CurrentLightPips + changeAmount, 0, GameManager.Instance.MaxLightPips);
         }
         lightPipChangeHandlers(GameManager.Instance.MaxLightPips, GameManager.Instance.CurrentLightPips);
@@ -72,6 +81,7 @@ public class PlayerLight : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Power Station")) {
             GameManager.Instance.SetPowerStation(collision.gameObject.transform);
+            soundPlayer.PlayPowerStation();
             if (GameManager.Instance.CurrentLightPips != GameManager.Instance.MaxLightPips) {
                 GameManager.Instance.CurrentLightPips = GameManager.Instance.MaxLightPips;
                 lightPipChangeHandlers(GameManager.Instance.MaxLightPips, GameManager.Instance.CurrentLightPips);
@@ -92,6 +102,7 @@ public class PlayerLight : MonoBehaviour
             GameManager.Instance.CurrentLightPips = GameManager.Instance.MaxLightPips;
             lightPipChangeHandlers(GameManager.Instance.MaxLightPips, GameManager.Instance.CurrentLightPips);
             Destroy(lightPipUpgrade.gameObject);
+            soundPlayer.PlayEnergyPickup();
         }
     }
 

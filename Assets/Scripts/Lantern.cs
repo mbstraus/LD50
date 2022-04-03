@@ -16,11 +16,15 @@ public class Lantern : MonoBehaviour
     public bool IsLit = false;
     [SerializeField]
     public GameObject Effector;
+    [SerializeField]
+    public AudioClip LanternLit;
 
-    // Start is called before the first frame update
+    private AudioSource audioSource;
+
     void Start() {
         SpriteRenderer = GetComponent<SpriteRenderer>();
         LanternLight = GetComponentInChildren<Light2D>();
+        audioSource = GetComponent<AudioSource>();
 
         if (IsLit) {
             Light();
@@ -32,7 +36,7 @@ public class Lantern : MonoBehaviour
     public void Light() {
         SpriteRenderer.sprite = LitSprite;
         LanternLight.intensity = 1f;
-
+        audioSource.PlayOneShot(LanternLit);
         if (Effector != null) {
             Effector.SetActive(false);
         }

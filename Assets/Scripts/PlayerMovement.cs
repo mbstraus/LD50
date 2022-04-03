@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 MovementVector = Vector2.zero;
     private bool IsJumpHeld = false;
     private float JumpCheckDelay = 0f;
+    private PlayerSounds soundPlayer;
 
     [SerializeField]
     public bool IsJumping = false;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         Animator = GetComponent<Animator>();
+        soundPlayer = GetComponent<PlayerSounds>();
     }
 
     private void Update() {
@@ -58,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext callbackContext) {
         if (callbackContext.started && !IsJumpHeld && IsGrounded()) {
+            soundPlayer.PlayJump();
             Animator.SetBool("Is Jumping", true);
             IsJumpHeld = true;
         }
