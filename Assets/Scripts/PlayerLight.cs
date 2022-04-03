@@ -7,6 +7,8 @@ public class PlayerLight : MonoBehaviour
 {
     private float InvulnerabilityTimeRemaining = 0f;
     private float LightDegradeTimeRemaining = 0f;
+    private SpriteRenderer SpriteRenderer;
+    private Color startingColor;
 
     [SerializeField]
     public float RadiusIncreaseByPip = 1f;
@@ -16,6 +18,8 @@ public class PlayerLight : MonoBehaviour
     public float InvulnerabiiltyTime = 0.5f;
     [SerializeField]
     public float LightDegradeTime = 10f;
+    [SerializeField]
+    public Color InvulnerabilityColor = Color.red;
 
     public delegate void OnLightPipChange(int maxLightPips, int currentLightPips);
     private OnLightPipChange lightPipChangeHandlers;
@@ -23,6 +27,8 @@ public class PlayerLight : MonoBehaviour
     private void Start() {
         LightDegradeTimeRemaining = LightDegradeTime;
         lightPipChangeHandlers(GameManager.Instance.MaxLightPips, GameManager.Instance.CurrentLightPips);
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+        startingColor = SpriteRenderer.color;
         if (GameManager.Instance.IsPowerStationInAnotherScene) {
             StartPositionMarker startPosition = FindObjectOfType<StartPositionMarker>();
             transform.position = startPosition.transform.position;
@@ -36,6 +42,8 @@ public class PlayerLight : MonoBehaviour
 
         if (InvulnerabilityTimeRemaining > 0f) {
             InvulnerabilityTimeRemaining -= Time.deltaTime;
+        } else {
+            SpriteRenderer.color = startingColor;
         }
 
         LightDegradeTimeRemaining -= Time.deltaTime;
@@ -49,6 +57,8 @@ public class PlayerLight : MonoBehaviour
         if (IsDamage && InvulnerabilityTimeRemaining <= 0f) {
             GameManager.Instance.CurrentLightPips = Mathf.Clamp(GameManager.Instance.CurrentLightPips + changeAmount, 0, GameManager.Instance.MaxLightPips);
             InvulnerabilityTimeRemaining = InvulnerabiiltyTime;
+            startingColor = SpriteRenderer.color;
+            SpriteRenderer.color = InvulnerabilityColor;
         } else {
             GameManager.Instance.CurrentLightPips = Mathf.Clamp(GameManager.Instance.CurrentLightPips + changeAmount, 0, GameManager.Instance.MaxLightPips);
         }
@@ -75,6 +85,13 @@ public class PlayerLight : MonoBehaviour
             PowerChargePickup powerChargePickup = collision.gameObject.GetComponent<PowerChargePickup>();
             ChangeCurrentLightPips(powerChargePickup.ChargeAmount, false);
             Destroy(powerChargePickup.gameObject);
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Light Pip Upgrade")) {
+            LightPipUpgrade lightPipUpgrade = collision.gameObject.GetComponent<LightPipUpgrade>();
+            GameManager.Instance.MaxLightPips += 1;
+            GameManager.Instance.CurrentLightPips = GameManager.Instance.MaxLightPips;
+            lightPipChangeHandlers(GameManager.Instance.MaxLightPips, GameManager.Instance.CurrentLightPips);
+            Destroy(lightPipUpgrade.gameObject);
         }
     }
 

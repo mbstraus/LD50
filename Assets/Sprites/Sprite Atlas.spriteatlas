@@ -44,13 +44,27 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
-    - {fileID: 2800000, guid: 8b70d75035295ab48916c24c32fa09d9, type: 3}
-    - {fileID: 2800000, guid: a40c423fa6517f042bc9de9080af2f93, type: 3}
-    - {fileID: 2800000, guid: 8729cf0482f769c4a821223c56bca8a8, type: 3}
-    - {fileID: 2800000, guid: 9ae0e31653c8add4d801330fdcf36c69, type: 3}
-    - {fileID: 21300000, guid: 394082388bd5fb44bb6bc7cba69a526d, type: 3}
+    - {fileID: 35342542, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+    - {fileID: -902315309, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+    - {fileID: -1430727985, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+    - {fileID: 891900672, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+    - {fileID: 1448364861, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+    - {fileID: 1944916172, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+    - {fileID: 1996974994, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+    - {fileID: 849213096, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
+    - {fileID: -2147194094, guid: 8729cf0482f769c4a821223c56bca8a8, type: 3}
+    - {fileID: -464028299, guid: 8729cf0482f769c4a821223c56bca8a8, type: 3}
+    - {fileID: 21300000, guid: fd5b0de314d356c46b366fc3decd03ef, type: 3}
     - {fileID: 21300000, guid: 19f4ec4bbb424e44eb7cd2604177cc73, type: 3}
+    - {fileID: 1771909250, guid: 9ae0e31653c8add4d801330fdcf36c69, type: 3}
+    - {fileID: -680628892, guid: 9ae0e31653c8add4d801330fdcf36c69, type: 3}
+    - {fileID: 254657957, guid: 8b70d75035295ab48916c24c32fa09d9, type: 3}
+    - {fileID: -1194582828, guid: 8b70d75035295ab48916c24c32fa09d9, type: 3}
+    - {fileID: -676395037, guid: 8b70d75035295ab48916c24c32fa09d9, type: 3}
+    - {fileID: -1957609909, guid: 8b70d75035295ab48916c24c32fa09d9, type: 3}
+    - {fileID: 767536927, guid: a40c423fa6517f042bc9de9080af2f93, type: 3}
+    - {fileID: 1183083944, guid: a40c423fa6517f042bc9de9080af2f93, type: 3}
+    - {fileID: 1399752360, guid: a40c423fa6517f042bc9de9080af2f93, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -60,11 +74,11 @@ SpriteAtlas:
   - {fileID: -1194582828, guid: 8b70d75035295ab48916c24c32fa09d9, type: 3}
   - {fileID: 254657957, guid: 8b70d75035295ab48916c24c32fa09d9, type: 3}
   - {fileID: -1957609909, guid: 8b70d75035295ab48916c24c32fa09d9, type: 3}
+  - {fileID: 21300000, guid: fd5b0de314d356c46b366fc3decd03ef, type: 3}
   - {fileID: -2147194094, guid: 8729cf0482f769c4a821223c56bca8a8, type: 3}
   - {fileID: -464028299, guid: 8729cf0482f769c4a821223c56bca8a8, type: 3}
   - {fileID: 1771909250, guid: 9ae0e31653c8add4d801330fdcf36c69, type: 3}
   - {fileID: -680628892, guid: 9ae0e31653c8add4d801330fdcf36c69, type: 3}
-  - {fileID: 21300000, guid: 394082388bd5fb44bb6bc7cba69a526d, type: 3}
   - {fileID: -1430727985, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
   - {fileID: -902315309, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
   - {fileID: 849213096, guid: 883a5d49323b0b943a36b53e482b2325, type: 3}
@@ -82,11 +96,11 @@ SpriteAtlas:
   - player_idle
   - player_attack
   - player_walk
+  - level_transition
   - lantern_0
   - lantern_1
   - lightpip_empty
   - lightpip_full
-  - powerstation
   - cave_corner_top_right
   - cave_corner_top_left
   - cave_wall

@@ -27685,6 +27685,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 873562706}
     - target: {fileID: 708300840480240119, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: LastPowerStationScene
+      value: Level 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240119, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
       propertyPath: LastPowerStationPosition.x
       value: -32
       objectReference: {fileID: 0}
@@ -28113,7 +28117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9131035620979645817, guid: fe700650fa5f4134b87b016d4888a7fa, type: 3}
       propertyPath: SceneToLoad
-      value: Start Screen
+      value: Level 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe700650fa5f4134b87b016d4888a7fa, type: 3}
