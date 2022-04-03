@@ -263,6 +263,7 @@ MonoBehaviour:
   HitCooldownTime: 1
   LightStrength: 1
   PushBackForce: 2
+  PowerChargePickupPrefab: {fileID: 3378238115170635473, guid: dfb12e88abff2e34bad33e010021c0d4, type: 3}
 --- !u!95 &8236432547559442429
 Animator:
   serializedVersion: 4

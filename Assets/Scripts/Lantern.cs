@@ -14,6 +14,8 @@ public class Lantern : MonoBehaviour
     public Sprite LitSprite;
     [SerializeField]
     public bool IsLit = false;
+    [SerializeField]
+    public GameObject Effector;
 
     // Start is called before the first frame update
     void Start() {
@@ -30,10 +32,18 @@ public class Lantern : MonoBehaviour
     public void Light() {
         SpriteRenderer.sprite = LitSprite;
         LanternLight.intensity = 1f;
+
+        if (Effector != null) {
+            Effector.SetActive(false);
+        }
     }
 
     public void Douse() {
         SpriteRenderer.sprite = UnlitSprite;
         LanternLight.intensity = 0f;
+
+        if (Effector != null) {
+            Effector.SetActive(true);
+        }
     }
 }

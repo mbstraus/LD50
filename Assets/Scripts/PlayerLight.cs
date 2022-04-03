@@ -47,10 +47,10 @@ public class PlayerLight : MonoBehaviour
 
     public void ChangeCurrentLightPips(int changeAmount, bool IsDamage) {
         if (IsDamage && InvulnerabilityTimeRemaining <= 0f) {
-            GameManager.Instance.CurrentLightPips += changeAmount;
+            GameManager.Instance.CurrentLightPips = Mathf.Clamp(GameManager.Instance.CurrentLightPips + changeAmount, 0, GameManager.Instance.MaxLightPips);
             InvulnerabilityTimeRemaining = InvulnerabiiltyTime;
         } else {
-            GameManager.Instance.CurrentLightPips += changeAmount;
+            GameManager.Instance.CurrentLightPips = Mathf.Clamp(GameManager.Instance.CurrentLightPips + changeAmount, 0, GameManager.Instance.MaxLightPips);
         }
         lightPipChangeHandlers(GameManager.Instance.MaxLightPips, GameManager.Instance.CurrentLightPips);
 
@@ -70,6 +70,11 @@ public class PlayerLight : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Level Exit")) {
             LevelTransition levelTransition = collision.gameObject.GetComponent<LevelTransition>();
             GameManager.Instance.MoveToNextArea(levelTransition.SceneToLoad);
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Power Charge Pickup")) {
+            PowerChargePickup powerChargePickup = collision.gameObject.GetComponent<PowerChargePickup>();
+            ChangeCurrentLightPips(powerChargePickup.ChargeAmount, false);
+            Destroy(powerChargePickup.gameObject);
         }
     }
 

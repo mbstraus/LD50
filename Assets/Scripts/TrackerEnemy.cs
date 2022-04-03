@@ -18,6 +18,8 @@ public class TrackerEnemy : MonoBehaviour
     public int LightStrength = 1;
     [SerializeField]
     public float PushBackForce = 2f;
+    [SerializeField]
+    public PowerChargePickup PowerChargePickupPrefab;
 
     void Start() {
         Player = FindObjectOfType<PlayerLight>();
@@ -54,7 +56,9 @@ public class TrackerEnemy : MonoBehaviour
     }
 
     public void Die() {
+        PowerChargePickup instance = Instantiate(PowerChargePickupPrefab, transform.position, Quaternion.identity);
+        instance.ChargeAmount = LightStrength;
+
         Destroy(gameObject);
-        // Drop a light recharge power-up based on LightStrength
     }
 }
