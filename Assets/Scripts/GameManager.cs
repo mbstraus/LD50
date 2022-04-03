@@ -48,6 +48,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 
+    public void StartGame() {
+        IsPowerStationInAnotherScene = true;
+        SceneManager.LoadScene("Level 1", LoadSceneMode.Single);
+    }
+
     public void PlayLevelComplete() {
         audioSource.PlayOneShot(LevelComplete);
     }
