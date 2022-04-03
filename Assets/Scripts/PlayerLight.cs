@@ -21,8 +21,12 @@ public class PlayerLight : MonoBehaviour
     [SerializeField]
     public float LightDegradeTime = 10f;
 
+    public delegate void OnLightPipChange(int maxLightPips, int currentLightPips);
+    private OnLightPipChange lightPipChangeHandlers;
+
     private void Start() {
         LightDegradeTimeRemaining = LightDegradeTime;
+        lightPipChangeHandlers(MaxLightPips, CurrentLightPips);
     }
 
     void Update() {
@@ -41,16 +45,29 @@ public class PlayerLight : MonoBehaviour
 
     public void ChangeCurrentLightPips(int changeAmount, bool IsDamage) {
         if (IsDamage && InvulnerabilityTimeRemaining <= 0f) {
+            Debug.Log("Took damage!");
             CurrentLightPips += changeAmount;
             InvulnerabilityTimeRemaining = InvulnerabiiltyTime;
         } else {
+            Debug.Log("Took a shot!");
             CurrentLightPips += changeAmount;
         }
+        lightPipChangeHandlers(MaxLightPips, CurrentLightPips);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Power Station")) {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Power Station") && CurrentLightPips != MaxLightPips) {
+            Debug.Log("Recharging at power station");
             CurrentLightPips = MaxLightPips;
+            lightPipChangeHandlers(MaxLightPips, CurrentLightPips);
         }
+    }
+
+    public void RegisterOnLightPipChange(OnLightPipChange handler) {
+        lightPipChangeHandlers += handler;
+    }
+
+    public void UnregisterOnLightPipChange(OnLightPipChange handler) {
+        lightPipChangeHandlers -= handler;
     }
 }
