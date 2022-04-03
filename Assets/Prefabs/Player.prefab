@@ -432,7 +432,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -532,8 +532,6 @@ MonoBehaviour:
   Jump: {fileID: 8300000, guid: 918869aa5bdc50746948f0026bb553d5, type: 3}
   LoseEnergy: {fileID: 8300000, guid: bf3a28198eb38404d8473a9dde503dcb, type: 3}
   PowerStation: {fileID: 8300000, guid: 4f6a3eafa08bcf840bb08c594b5d76b6, type: 3}
-  PlayerDied: {fileID: 8300000, guid: 46bc15eb83d8ed7469423e0d3fb32a97, type: 3}
-  LevelComplete: {fileID: 8300000, guid: a581abd1bd1b6484c929265851f726e7, type: 3}
 --- !u!1 &4400387584225574826
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,7 +594,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7765151, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
