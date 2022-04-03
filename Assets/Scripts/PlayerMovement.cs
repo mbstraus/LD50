@@ -69,10 +69,8 @@ public class PlayerMovement : MonoBehaviour
     public bool IsGrounded() {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, GroundDistanceCheck, LayerMask.GetMask("Ground"));
         if (hit.collider != null) {
-            Debug.Log("Player is grounded!");
             return true;
         }
-        Debug.Log("Player is not grounded!");
         return false;
     }
 }

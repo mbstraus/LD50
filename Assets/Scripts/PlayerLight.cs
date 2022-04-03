@@ -9,10 +9,6 @@ public class PlayerLight : MonoBehaviour
     private float LightDegradeTimeRemaining = 0f;
 
     [SerializeField]
-    public int MaxLightPips = 10;
-    [SerializeField]
-    public int CurrentLightPips = 10;
-    [SerializeField]
     public float RadiusIncreaseByPip = 1f;
     [SerializeField]
     public Light2D LightSource;
@@ -25,12 +21,23 @@ public class PlayerLight : MonoBehaviour
     private OnLightPipChange lightPipChangeHandlers;
 
     private void Start() {
+        Debug.Log("PlayerLight Start...");
         LightDegradeTimeRemaining = LightDegradeTime;
-        lightPipChangeHandlers(MaxLightPips, CurrentLightPips);
+        lightPipChangeHandlers(GameManager.Instance.MaxLightPips, GameManager.Instance.CurrentLightPips);
+
+        if (GameManager.Instance.LastPowerStationPosition != null) {
+            Debug.Log("Resetting player position...");
+            PlayerLight player = FindObjectOfType<PlayerLight>();
+            if (player == null) {
+                Debug.LogError("Player does not exist!");
+                return;
+            }
+            player.transform.position = GameManager.Instance.LastPowerStationPosition;
+        }
     }
 
     void Update() {
-        LightSource.pointLightOuterRadius = RadiusIncreaseByPip * CurrentLightPips;
+        LightSource.pointLightOuterRadius = RadiusIncreaseByPip * GameManager.Instance.CurrentLightPips;
 
         if (InvulnerabilityTimeRemaining > 0f) {
             InvulnerabilityTimeRemaining -= Time.deltaTime;
@@ -45,21 +52,25 @@ public class PlayerLight : MonoBehaviour
 
     public void ChangeCurrentLightPips(int changeAmount, bool IsDamage) {
         if (IsDamage && InvulnerabilityTimeRemaining <= 0f) {
-            Debug.Log("Took damage!");
-            CurrentLightPips += changeAmount;
+            GameManager.Instance.CurrentLightPips += changeAmount;
             InvulnerabilityTimeRemaining = InvulnerabiiltyTime;
         } else {
-            Debug.Log("Took a shot!");
-            CurrentLightPips += changeAmount;
+            GameManager.Instance.CurrentLightPips += changeAmount;
         }
-        lightPipChangeHandlers(MaxLightPips, CurrentLightPips);
+        lightPipChangeHandlers(GameManager.Instance.MaxLightPips, GameManager.Instance.CurrentLightPips);
+
+        if (GameManager.Instance.CurrentLightPips <= 0) {
+            GameManager.Instance.PlayerDied();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Power Station") && CurrentLightPips != MaxLightPips) {
-            Debug.Log("Recharging at power station");
-            CurrentLightPips = MaxLightPips;
-            lightPipChangeHandlers(MaxLightPips, CurrentLightPips);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Power Station")) {
+            GameManager.Instance.SetPowerStation(collision.gameObject.transform);
+            if (GameManager.Instance.CurrentLightPips != GameManager.Instance.MaxLightPips) {
+                GameManager.Instance.CurrentLightPips = GameManager.Instance.MaxLightPips;
+                lightPipChangeHandlers(GameManager.Instance.MaxLightPips, GameManager.Instance.CurrentLightPips);
+            }
         }
     }
 

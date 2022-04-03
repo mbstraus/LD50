@@ -1101,7 +1101,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -27510,6 +27510,75 @@ CompositeCollider2D:
       - {x: -15.999974, y: -3.00001}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!1001 &708300840895586124
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 708300840480240112, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240112, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 196.96278
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240112, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 215.68652
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240112, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.81542
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240112, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240112, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240112, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240112, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240112, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240112, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240112, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240118, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: m_Name
+      value: Game Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240119, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: LastPowerStation
+      value: 
+      objectReference: {fileID: 873562706}
+    - target: {fileID: 708300840480240119, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: LastPowerStationPosition.x
+      value: -32
+      objectReference: {fileID: 0}
+    - target: {fileID: 708300840480240119, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
+      propertyPath: LastPowerStationPosition.y
+      value: 15.25
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dfc3c83e033b7604d811b5fe93e2ab28, type: 3}
 --- !u!1001 &738943969953852312
 PrefabInstance:
   m_ObjectHideFlags: 0
