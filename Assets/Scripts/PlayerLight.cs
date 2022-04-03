@@ -21,18 +21,13 @@ public class PlayerLight : MonoBehaviour
     private OnLightPipChange lightPipChangeHandlers;
 
     private void Start() {
-        Debug.Log("PlayerLight Start...");
         LightDegradeTimeRemaining = LightDegradeTime;
         lightPipChangeHandlers(GameManager.Instance.MaxLightPips, GameManager.Instance.CurrentLightPips);
-
-        if (GameManager.Instance.LastPowerStationPosition != null) {
-            Debug.Log("Resetting player position...");
-            PlayerLight player = FindObjectOfType<PlayerLight>();
-            if (player == null) {
-                Debug.LogError("Player does not exist!");
-                return;
-            }
-            player.transform.position = GameManager.Instance.LastPowerStationPosition;
+        if (GameManager.Instance.IsPowerStationInAnotherScene) {
+            StartPositionMarker startPosition = FindObjectOfType<StartPositionMarker>();
+            transform.position = startPosition.transform.position;
+        } else if (GameManager.Instance.LastPowerStationPosition != null) {
+            transform.position = GameManager.Instance.LastPowerStationPosition;
         }
     }
 
@@ -71,6 +66,10 @@ public class PlayerLight : MonoBehaviour
                 GameManager.Instance.CurrentLightPips = GameManager.Instance.MaxLightPips;
                 lightPipChangeHandlers(GameManager.Instance.MaxLightPips, GameManager.Instance.CurrentLightPips);
             }
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Level Exit")) {
+            LevelTransition levelTransition = collision.gameObject.GetComponent<LevelTransition>();
+            GameManager.Instance.MoveToNextArea(levelTransition.SceneToLoad);
         }
     }
 
