@@ -74,6 +74,16 @@ public class PlayerMovement : MonoBehaviour
         if (hit.collider != null) {
             return true;
         }
+
+        hit = Physics2D.Raycast(new Vector2(transform.position.x - 0.5f, transform.position.y), Vector2.down, GroundDistanceCheck, LayerMask.GetMask("Ground"));
+        if (hit.collider != null) {
+            return true;
+        }
+
+        hit = Physics2D.Raycast(new Vector2(transform.position.x + 0.5f, transform.position.y), Vector2.down, GroundDistanceCheck, LayerMask.GetMask("Ground"));
+        if (hit.collider != null) {
+            return true;
+        }
         return false;
     }
 }
